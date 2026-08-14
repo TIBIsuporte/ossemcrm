@@ -346,7 +346,8 @@
       };
 
       try {
-        const response = await fetch("http://localhost:3000/consulta", {
+        // CORREÇÃO: URL relativa para funcionar no Render
+        const response = await fetch("/consulta", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body)
