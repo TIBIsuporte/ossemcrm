@@ -6,6 +6,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// NOVO: Adicione esta linha para servir a sua página index.html e arquivos da pasta
+app.use(express.static(__dirname));
+
 // rota que recebe os parâmetros e chama a API
 app.post("/consulta", async (req, res) => {
   const body = {
@@ -40,4 +43,6 @@ app.post("/consulta", async (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log("Servidor rodando em http://localhost:3000"));
+// O Render precisa que o app utilize a porta dinâmica da nuvem (process.env.PORT)
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
